@@ -1,4 +1,4 @@
-# 🛡️ Blindando Apps con AWS WAF
+# 🛡️ blindando-apps-con-aws-waf
 
 Proyecto que demuestra la protección de una aplicación web en AWS. Se contrasta un despliegue vulnerable en ECS contra una arquitectura segura que utiliza AWS WAF para detectar y bloquear ataques comunes como la Inyección SQL.
 
@@ -53,6 +53,8 @@ Una vez accesible, se realizó un ataque de inyección SQL exitoso a través del
 
 Esto concedió acceso no autorizado, confirmando la vulnerabilidad del sistema.
 
+![Ataque SQL Exitoso](https://github.com/bryramirezp/blindando-apps-con-aws-waf/blob/main/ataque-sql-exitoso.png)
+
 ### Fase 3: Implementación de la Arquitectura Segura
 
 Para mitigar el riesgo, se desplegó la segunda arquitectura siguiendo un enfoque de defensa en profundidad:
@@ -68,6 +70,8 @@ Para mitigar el riesgo, se desplegó la segunda arquitectura siguiendo un enfoqu
   - El Security Group de la tarea de ECS se configuró para aceptar tráfico únicamente desde el Security Group del ALB, bloqueando cualquier otro intento de conexión.
 
 Al intentar el mismo ataque de inyección SQL contra el endpoint del ALB, la solicitud fue interceptada y bloqueada por AWS WAF, devolviendo un código de estado **403 Forbidden** y demostrando la efectividad de la capa de seguridad implementada.
+
+![Ataque Bloqueado por WAF](https://github.com/bryramirezp/blindando-apps-con-aws-waf/blob/main/ataque-bloqueado-por-waf.png)
 
 ## 📂 Estructura del Proyecto
 
