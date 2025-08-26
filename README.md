@@ -66,8 +66,14 @@ Para mitigar el riesgo, se desplegó la segunda arquitectura siguiendo un enfoqu
 - **Firewall de Aplicaciones Web**: Se asoció una Web ACL de AWS WAF directamente al ALB. Para esta ACL, se activó el conjunto de reglas administradas por AWS `AWSManagedRulesSQLiRuleSet`, diseñado específicamente para detectar y bloquear patrones de inyección SQL.
 
 - **Microsegmentación con Security Groups**:
-  - El Security Group del ALB se configuró para aceptar tráfico HTTP (puerto 80) desde internet (0.0.0.0/0).
-  - El Security Group de la tarea de ECS se configuró para aceptar tráfico únicamente desde el Security Group del ALB, bloqueando cualquier otro intento de conexión.
+  
+  **SG del ALB**
+  * Entrada: HTTP (80) desde internet (`0.0.0.0/0`).
+  * Salida: todo el tráfico permitido.
+  
+  **SG de las ECS**
+  * Entrada: HTTP (80) **únicamente desde el SG del ALB**.
+  * Salida: todo el tráfico permitido.
 
 Al intentar el mismo ataque de inyección SQL contra el endpoint del ALB, la solicitud fue interceptada y bloqueada por AWS WAF, devolviendo un código de estado **403 Forbidden** y demostrando la efectividad de la capa de seguridad implementada.
 
