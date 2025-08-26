@@ -41,7 +41,16 @@ Usuario → Internet → Application Load Balancer (con AWS WAF) → Security Gr
 
 El primer paso fue encapsular la aplicación en una imagen de Docker. Una vez construida la imagen localmente (`docker build`), se subió a un repositorio privado en Amazon ECR. Esto asegura un almacenamiento centralizado y seguro de los artefactos de despliegue.
 
-Para la comunicación con la API de AWS, se utilizó la AWS CLI, previamente configurada con `aws configure`.
+Para la comunicación con la API de AWS, se utilizó la AWS CLI:
+
+**Instalar AWS CLI**
+```bash
+aws configure
+```
+* AGREGAR TU ACCESS KEY ID
+* AGREGAR TU SECRET ACCESS KEY
+
+La clave de acceso se crea en **IAM → Credenciales de seguridad**
 
 ### Fase 2: Demostración de la Vulnerabilidad
 
